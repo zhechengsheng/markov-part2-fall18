@@ -13,8 +13,9 @@ public class EfficientMarkov extends BaseMarkov {
 	
 	@Override
 	public void setTraining(String text) {
+		myMap = new HashMap<String,ArrayList<String>>();
 		myText = text;
-		String[] allchar = text.trim().split("");
+		String[] allchar = text.split("");
 		for(int index = 0; index < text.length()-myOrder+1;index++) {
 		String key = text.substring(index, index+myOrder);
 		if (! myMap.containsKey(key)){
