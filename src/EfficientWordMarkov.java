@@ -22,7 +22,7 @@ public void setTraining(String text) {
 	if (! myMap.containsKey(key)){
       	myMap.put(key,  new ArrayList<String>());
     	}
-	if (index + key.length() >= text.length()){
+	if (index + key.length() >= myWords.length){
 		myMap.get(key).add(PSEUDO_EOS);
 		break;
 	}
