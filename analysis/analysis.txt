@@ -1,5 +1,7 @@
 This is the analysis for Markov Part 2, Fall 2018
 
+Name:Zhecheng Sheng
+Netid: zs68
 Include your name and net id here. Answer the questions from the assignment 
 that are reproduced below
 
@@ -7,21 +9,100 @@ that are reproduced below
 BaseMarkov to generate 2,000, 4,000, 8,000, 16,000, and 32,000 
 random characters using the default file and an order 5 Markov Model. 
 Include these timings in your report. 
+
+By using a BaseMarkov, the result is shown below
+time	source	#chars
+0.220	496768	2000
+0.415	496768	4000
+0.832	496768	8000
+1.317	496768	16000
+3.258	496768	32000
+
+
+
 The program also generates 4,096 characters using texts that increase in 
 size from 496,768 characters to 4,967,680 characters (10 times the number).  
 Do you the timings support the O(NT) analysis for BaseMarkov?
 
+0.415	496768	4096
+0.862	993536	4096
+1.303	1490304	4096
+1.712	1987072	4096
+2.130	2483840	4096
+2.536	2980608	4096
+2.936	3477376	4096
+3.362	3974144	4096
+3.808	4470912	4096
+4.253	4967680	4096
+
+Answer: The output support the theoretical timing of a O(NT) algorithm since when last N is 10 times longer than the first N, the last time is 10 times the first time. 
+Similarly, if we increase number of characters by 10 times, the time increases by 10 times, which is seen in the first list of output.
 
 
 (2) Determine (from running Benchmark.java) how long it takes for 
 EfficientMarkov to generate 2,000, 4,000, 8,000, 16,000, and 32,000 
 random characters using the default file and an order 5 Markov Model. 
 Include these timings in your report. 
+Answer:By using a EfficientMarkov, the result is shown below:
+time	source	#chars
+0.198	496768	2000
+0.211	496768	4000
+0.193	496768	8000
+0.181	496768	16000
+0.209	496768	32000
+
+
+
 The program also generates 4,096 characters using texts that increase in 
 size from 496,768 characters to 4,967,680 characters (10 times the number).  
 Do you the timings support the O(N+T) analysis for EfficientMarkov?
 
+0.182	496768	4096
+0.415	993536	4096
+0.525	1490304	4096
+0.742	1987072	4096
+0.830	2483840	4096
+1.011	2980608	4096
+1.247	3477376	4096
+1.369	3974144	4096
+1.632	4470912	4096
+1.837	4967680	4096
+
+Answer: The output support the theoretical timing of a O(N+T).
+Compare the result from fixed source and fixed character, we can see when N and T both becomes 2 times larger, the timing is roughly 2 times larger than the previous one.
+And when T is small and N is relatively large, the changes in T makes the timing nearly a constant.
+
+
 (3)The tests in the class Benchmark use an order-5 Markov Model. 
 Run tests that you think are appropriate to determine if the order of the 
 Markov Model has a significant impact on the running time for BaseMarkov. 
-Explain your reasoning.
+Starting tests
+
+time	source	#chars
+0.186	496768	2000
+0.371	496768	4000
+0.798	496768	8000
+1.625	496768	16000
+3.309	496768	32000
+
+0.380	496768	4096
+0.764	993536	4096
+1.158	1490304	4096
+1.574	1987072	4096
+1.886	2483840	4096
+2.271	2980608	4096
+2.673	3477376	4096
+3.100	3974144	4096
+3.484	4470912	4096
+3.848	4967680	4096
+
+Finished tests
+
+
+Answer: After changing the order from 5 to 500 and ran the BaseMarkov, I got the results above.
+This suggest that the choice of order will not have a strong impact on the running time.
+That is because we don't store the information of keys in BaseMarkov, so the complexity of keys would not affect the running time.
+However, it will have a strong impact on running EfficientMarkov, because the size of the hash map heavily depends on the complexity of keys.
+
+
+

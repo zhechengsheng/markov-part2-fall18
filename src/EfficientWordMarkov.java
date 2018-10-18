@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+// Inherit class BaseWordMarkov
 public class EfficientWordMarkov extends BaseWordMarkov {
 	private Map<WordGram,ArrayList<String>> myMap;
 	public EfficientWordMarkov(int order){
@@ -15,19 +16,19 @@ public class EfficientWordMarkov extends BaseWordMarkov {
 	}
 @Override
 public void setTraining(String text) {
-	myMap = new HashMap<WordGram,ArrayList<String>>();
+	myMap = new HashMap<WordGram,ArrayList<String>>(); //Initialize a new hashmap
 	myWords = text.split("\\s+");
 	for(int index = 0; index < myWords.length-myOrder+1;index++) {
-	WordGram key = new WordGram(myWords, index ,myOrder);
+	WordGram key = new WordGram(myWords, index ,myOrder);// Get keys
 	if (! myMap.containsKey(key)){
       	myMap.put(key,  new ArrayList<String>());
     	}
-	if (index + key.length() >= myWords.length){
+	if (index + key.length() >= myWords.length){ // Detect the end of text
 		myMap.get(key).add(PSEUDO_EOS);
 		break;
 	}
 		String follow = myWords[index+key.length()];
-		myMap.get(key).add(follow);
+		myMap.get(key).add(follow); // Append new element to the key. 
 	}
 	
 }

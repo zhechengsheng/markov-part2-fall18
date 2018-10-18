@@ -1,5 +1,7 @@
 import java.util.*;
 
+
+//Inherit class BaseMarkov
 public class EfficientMarkov extends BaseMarkov {
 	private Map<String,ArrayList<String>> myMap;
 	public EfficientMarkov(int order){
@@ -13,19 +15,19 @@ public class EfficientMarkov extends BaseMarkov {
 	
 	@Override
 	public void setTraining(String text) {
-		myMap = new HashMap<String,ArrayList<String>>();
+		myMap = new HashMap<String,ArrayList<String>>();//Initialize a new hashmap
 		myText = text;
 		String[] allchar = text.split("");
 		for(int index = 0; index < text.length()-myOrder+1;index++) {
-		String key = text.substring(index, index+myOrder);
+		String key = text.substring(index, index+myOrder); // Get keys
 		if (! myMap.containsKey(key)){
 	      	myMap.put(key, new ArrayList<String>());
 	    	}
-		if (index + myOrder >= text.length()){
+		if (index + myOrder >= text.length()){ // Detect the end of text
 			myMap.get(key).add(PSEUDO_EOS);
 			break;
 		}
-			String follow = allchar[index+myOrder];
+			String follow = allchar[index+myOrder];// Append new element to the key. 
 			myMap.get(key).add(follow);
 		}
 		
