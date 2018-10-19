@@ -4,16 +4,27 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 // Inherit class BaseWordMarkov
+
 public class EfficientWordMarkov extends BaseWordMarkov {
 	private Map<WordGram,ArrayList<String>> myMap;
+	/**
+	 * Efficient constructor with parameter
+	 * @param order order of the Markov Model
+	 */
 	public EfficientWordMarkov(int order){
 		super(order);
 		myMap = new HashMap<WordGram,ArrayList<String>>();
 	}
-	
+	/**
+	 * Efficient constructor without parameter
+	 */
 	public EfficientWordMarkov() {
 		this(2);
 	}
+	/**
+	 * Override setTraining using hashmap
+	 * @param text source we use to search the keys
+	 */
 @Override
 public void setTraining(String text) {
 	myMap = new HashMap<WordGram,ArrayList<String>>(); //Initialize a new hashmap
@@ -32,6 +43,11 @@ public void setTraining(String text) {
 	}
 	
 }
+/**
+ * Override getFollows
+ * @param key key in the hashmap
+ * @return Array list containing all the words after a key
+ */
 @Override
 public ArrayList<String> getFollows(WordGram key){
 	if(! myMap.containsKey(key)) {

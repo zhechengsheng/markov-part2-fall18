@@ -29,7 +29,7 @@ public class MarkovDriver {
 	public static void main(String[] args) {
 			
 		String filename = "data/trump-sou17.txt";
-		//String filename = "data/bush-sou07.txt";
+//		String filename = "data/bush-sou07.txt";
 
 		if (args.length > 0) {
 			filename = args[1];
@@ -37,11 +37,11 @@ public class MarkovDriver {
 		
 		File f = new File(filename);
 		String text = TextSource.textFromFile(f);
-		//MarkovInterface<String> standard = new BaseMarkov();
+		MarkovInterface<String> standard = new BaseMarkov();
 		//MarkovInterface<String> efficient = new EfficientMarkov();
 		MarkovInterface<WordGram> wmm = new BaseWordMarkov();
 		//MarkovInterface<WordGram> ewm = new EfficientWordMarkov();
-		markovGenerate(wmm,text);
+		markovGenerate(standard,text);
 		//markovGenerate(efficient,text);
 	}
 
